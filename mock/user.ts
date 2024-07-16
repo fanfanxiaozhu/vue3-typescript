@@ -43,7 +43,7 @@ export default [
       }
       const { token } = checkUser
       return {
-        code: 0,
+        code: 200,
         data: {
           token
         }
@@ -64,7 +64,7 @@ export default [
         }
       }
       return {
-        code: 0,
+        code: 200,
         data: {
           checkUser
         }
