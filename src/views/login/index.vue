@@ -14,7 +14,8 @@
                         </el-input>
                     </el-form-item>
                     <el-form-item>
-                        <el-button class="w-100" type="primary" :loading="loading" @click="onSubmit(formRef)">登录</el-button>
+                        <el-button class="w-100" type="primary" :loading="loading"
+                            @click="onSubmit(formRef)">登录</el-button>
                     </el-form-item>
                 </el-form>
             </el-col>
@@ -29,6 +30,8 @@ import { User, Lock } from '@element-plus/icons-vue'
 import type { FormInstance, FormRules } from 'element-plus'
 import { ElNotification } from 'element-plus'
 import { reqLogin } from '@/api/user'
+import { useUserStore } from '@/stores/modules/user' 
+const userStore = useUserStore()// useUserStore from '@/stores/user'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 
@@ -64,6 +67,7 @@ const login = () => {
     reqLogin(form).then((res) => {
         loading.value = false
         if (res.code === 200) {
+            userStore.token = res.data.token as string;
             localStorage.setItem('TOKEN', res.data.token as string)
             router.push({ name: 'home' })
             ElNotification({
