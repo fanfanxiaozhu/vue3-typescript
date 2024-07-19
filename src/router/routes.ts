@@ -42,7 +42,6 @@ export const constantRoutes = [
     path: '/acl',
     name: 'acl',
     component: () => import('@/layout/index.vue'),
-    hidden: 'false',
     meta: {
       hidden: false,
       title: '权限管理',

@@ -1,10 +1,12 @@
 <template>
-    <div v-for="(item, index) in menuList" :key="index">
+    <template v-for="(item, index) in menuList" :key="index">
         <el-menu-item v-if="!item.meta.hidden && !item.children" :index="item.path">
             <el-icon>
                 <component :is="item.meta.icon"></component>
             </el-icon>
-            <span>{{ item.meta.title }}</span>
+            <template #title>
+                <span>{{ item.meta.title }}</span>
+            </template>
         </el-menu-item>
         <template v-if="item.children && item.children.length">
             <MenuList v-if="item.meta.hidden" :menu="item.children"></MenuList>
@@ -18,7 +20,7 @@
                 <MenuList :menu="item.children"></MenuList>
             </el-sub-menu>
         </template>
-    </div>
+    </template>
 </template>
 
 <script setup lang='ts'>
