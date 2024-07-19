@@ -1,10 +1,10 @@
 <template>
-  <el-menu router @open="handleOpen" @close="handleClose">
+  <el-menu router :default-active="activeMenu">
     <div v-if="config.logoShow" class="logo">
       <img :src="config.logo" alt="logo" width="46">
       <span>{{ config.title }}</span>
     </div>
-    <menuList :menu="menuList"></menuList>
+    <MenuList :menu="menuList"></MenuList>
   </el-menu>
 </template>
 
@@ -13,16 +13,11 @@ import config from '../config'
 import MenuList from './menuList.vue'
 import { reactive } from 'vue'
 import { constantRoutes } from '../router/routes'
-const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
-const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
-}
+import { useRoute } from 'vue-router'
+const router = useRoute()
 
 const menuList = reactive(constantRoutes);
-console.log('父组件------', menuList)
-
+const activeMenu = router.path
 </script>
 
 <style lang="scss" scoped>

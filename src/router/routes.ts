@@ -14,6 +14,7 @@ export const constantRoutes = [
     meta: {
       hidden: true,
     },
+    redirect: '/home',
     children: [
       {
         path: '/home',
@@ -76,6 +77,58 @@ export const constantRoutes = [
           hidden: false,
           title: '菜单管理',
           icon: 'Menu'
+        }
+      }
+    ]
+  },
+  {
+    path: '/product',
+    name: 'product',
+    component: () => import('@/layout/index.vue'),
+    meta: {
+      hidden: false,
+      title: '商品管理',
+      icon: 'Goods'
+    },
+    children: [
+      {
+        path: '/product/trademark',
+        name: 'trademark',
+        component: () => import('@/views/product/trademark/index.vue'),
+        meta: {
+          hidden: false,
+          title: '品牌管理',
+          icon: 'Postcard'
+        }
+      },
+      {
+        path: '/product/attr',
+        name: 'attr',
+        component: () => import('@/views/product/attr/index.vue'),
+        meta: {
+          hidden: false,
+          title: '属性管理',
+          icon: 'Operation'
+        }
+      },
+      {
+        path: '/product/spu',
+        name: 'spu',
+        component: () => import('@/views/product/spu/index.vue'),
+        meta: {
+          hidden: false,
+          title: 'SPU管理',
+          icon: 'Histogram'
+        }
+      },
+      {
+        path: '/product/sku',
+        name: 'sku',
+        component: () => import('@/views/product/sku/index.vue'),
+        meta: {
+          hidden: false,
+          title: 'SKU管理',
+          icon: 'DataLine'
         }
       }
     ]
