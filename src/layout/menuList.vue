@@ -6,8 +6,9 @@
             </el-icon>
             <span>{{ item.meta.title }}</span>
         </el-menu-item>
-        <template v-if="!item.meta.hidden && item.children && item.children.length">
-            <el-sub-menu :index="item.path">
+        <template v-if="item.children && item.children.length">
+            <MenuList v-if="item.meta.hidden" :menu="item.children"></MenuList>
+            <el-sub-menu v-else :index="item.path">
                 <template #title>
                     <el-icon>
                         <component :is="item.meta.icon"></component>
@@ -21,12 +22,10 @@
 </template>
 
 <script setup lang='ts'>
-import { ref, reactive, defineProps } from 'vue'
+import { defineProps } from 'vue'
 
 const props = defineProps(['menu'])
-// console.log(props)
 const menuList = props.menu
-// console.log(menuList)
 </script>
 
 <script lang="ts">

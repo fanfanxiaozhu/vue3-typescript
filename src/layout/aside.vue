@@ -21,7 +21,7 @@ const handleClose = (key: string, keyPath: string[]) => {
 }
 
 const menuList = reactive(constantRoutes);
-// console.log('父组件------', menuList)
+console.log('父组件------', menuList)
 
 </script>
 

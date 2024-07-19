@@ -12,9 +12,7 @@ export const constantRoutes = [
     name: 'layout',
     component: () => import('@/layout/index.vue'),
     meta: {
-      hidden: false,
-      title: 'layout',
-      icon: 'Menu'
+      hidden: true,
     },
     children: [
       {
