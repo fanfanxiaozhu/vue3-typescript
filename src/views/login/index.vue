@@ -31,7 +31,7 @@ import type { FormInstance, FormRules } from 'element-plus'
 import { ElNotification } from 'element-plus'
 import { reqLogin } from '@/api/user'
 import { useUserStore } from '@/stores/modules/user' 
-const userStore = useUserStore()// useUserStore from '@/stores/user'
+const userStore = useUserStore()
 import { useRouter } from 'vue-router'
 const router = useRouter()
 

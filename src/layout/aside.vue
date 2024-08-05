@@ -1,11 +1,12 @@
 <template>
-  <div class="aside">
+  <div class="aside" :class="{ 'collapse': settingStore.isCollapseAside }">
     <div v-if="config.logoShow" class="logo">
-      <img :src="config.logo" alt="logo" width="46">
-      <span>{{ config.title }}</span>
+      <img :src="config.logo" alt="logo" width="44">
+      <span v-show="!settingStore.isCollapseAside">{{ config.title }}</span>
     </div>
     <el-scrollbar>
-      <el-menu router :default-active="activeMenu">
+      <el-menu router :default-active="activeMenu" :collapse="settingStore.isCollapseAside" background-color="#000"
+        text-color="#fff">
         <MenuList :menu="menuList"></MenuList>
       </el-menu>
     </el-scrollbar>
@@ -18,29 +19,48 @@ import MenuList from './menuList.vue'
 import { reactive } from 'vue'
 import { constantRoutes } from '../router/routes'
 import { useRoute } from 'vue-router'
-const router = useRoute()
+import { useSettingStore } from '@/stores/modules/setting'
 
+const settingStore = useSettingStore();
+const router = useRoute()
 const activeMenu = router.path
 const menuList = reactive(constantRoutes);
 </script>
 
 <style lang="scss" scoped>
 .aside {
+  width: $aside-width;
   display: flex;
   flex-direction: column;
+  background: #000;
+  color: #fff;
+  transition: all 0.3s;
+
+  &.collapse {
+    width: $aside-width-collapsed;
+  }
+
+  .logo {
+    width: 100%;
+    height: $height-logo;
+    display: flex;
+    align-items: center;
+    margin-left: 8px;
+    font-size: 14px;
+
+    img {
+      margin-right: 8px;
+      border-radius: 50%;
+    }
+  }
 
   .el-scrollbar {
     height: calc(100vh - #{$height-logo});
   }
 
-  .logo {
-    height: $height-logo;
-    display: flex;
-    align-items: center;
-  }
-
   .el-menu {
-    width: 200px;
+    width: 100%;
+    border-right: none;
   }
 }
 </style>
