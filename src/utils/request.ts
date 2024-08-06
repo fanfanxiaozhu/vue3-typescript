@@ -1,5 +1,7 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
+import { useUserStore } from '@/stores/modules/user'
+const userStore = useUserStore()
 
 const request = axios.create({
   baseURL: import.meta.env.BASE_URL,
@@ -7,6 +9,8 @@ const request = axios.create({
 })
 
 request.interceptors.request.use((config) => {
+  config.headers.token = userStore.token || ''
+
   return config
 })
 

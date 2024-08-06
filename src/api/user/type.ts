@@ -4,7 +4,7 @@ export interface LoginForm {
 }
 
 interface DataType {
-  token?: string,
+  token?: string
   message?: string
 }
 export interface LoginResponse {
@@ -12,7 +12,7 @@ export interface LoginResponse {
   data: DataType
 }
 
-interface UserInfoType {
+export interface UserInfoType {
   userId: number
   avatar: string
   username: string

@@ -23,7 +23,7 @@
       <img class="avatar" src="../assets/logo.png" alt="avatar">
       <el-dropdown>
         <span class="el-dropdown-link">
-          {{ user.nickname }}
+          {{ userStore.userInfo.username }}
           <el-icon class="el-icon--right">
             <ArrowDown />
           </el-icon>
@@ -39,9 +39,10 @@
 </template>
 
 <script setup lang='ts'>
-import { ref } from 'vue'
 import { useSettingStore } from '@/stores/modules/setting'
 const settingStore = useSettingStore();
+import { useUserStore } from '@/stores/modules/user'
+const userStore = useUserStore()
 
 const toggleFullScreen = () => {
   if (document.fullscreenElement) {
@@ -50,8 +51,6 @@ const toggleFullScreen = () => {
     document.documentElement.requestFullscreen();
   }
 }
-
-const user = ref({ nickname: 'Y小了个p' });
 </script>
 
 <style lang="scss" scoped>

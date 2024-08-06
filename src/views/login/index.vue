@@ -65,8 +65,7 @@ const login = () => {
 	reqLogin(form).then((res) => {
 		loading.value = false
 		if (res.code === 200) {
-			userStore.token = res.data.token as string;
-			localStorage.setItem('TOKEN', res.data.token as string)
+			userStore.setToken(res.data.token as string)
 			router.push({ name: 'home' })
 			ElNotification({
 				type: 'success',
