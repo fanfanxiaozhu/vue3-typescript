@@ -17,7 +17,7 @@
       </el-breadcrumb>
     </div>
     <div class="right">
-      <el-button icon="Refresh" circle />
+      <el-button icon="Refresh" circle @click="settingStore.toggleRefresh" />
       <el-button icon="FullScreen" circle />
       <el-button icon="Setting" circle />
       <img class="avatar" src="../assets/logo.png" alt="avatar">
@@ -50,6 +50,7 @@ const user = ref({ nickname: 'Y小了个p' });
 .el-header {
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid var(--el-border-color);
 
   .left,
   .right {
