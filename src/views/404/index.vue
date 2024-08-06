@@ -1,7 +1,7 @@
 <template>
-    <div>
-        我是404页面
-    </div>
+	<div>
+		我是404页面
+	</div>
 </template>
 
 <script setup lang='ts'>
