@@ -47,6 +47,7 @@ export const constantRoutes = [
       title: '权限管理',
       icon: 'Lock'
     },
+    redirect: '/acl/user',
     children: [
       {
         path: '/acl/user',
@@ -89,6 +90,7 @@ export const constantRoutes = [
       title: '商品管理',
       icon: 'Goods'
     },
+    redirect: '/product/trademark',
     children: [
       {
         path: '/product/trademark',

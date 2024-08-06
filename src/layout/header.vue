@@ -1,16 +1,19 @@
 <template>
   <el-header>
     <div class="left">
-      <el-icon @click="settingStore.toggleCollapse">
+      <el-icon class="icon-collapse" @click="settingStore.toggleCollapse">
         <Expand v-if="settingStore.isCollapseAside" />
         <Fold v-else />
       </el-icon>
       <el-breadcrumb separator-icon="ArrowRight">
-        <el-breadcrumb-item :to="{ path: '/acl/user' }">权限管理</el-breadcrumb-item>
-        <el-breadcrumb-item>用户管理</el-breadcrumb-item>
-        <span v-if="false">v-if</span>
-        <span v-show="false">v-show</span>
-        <span style="visibility: hidden;">visible</span>
+        <template v-for="(router, index) in $route.matched" :key="index">
+          <el-breadcrumb-item v-if="!router.meta.hidden" :to="{ path: router.path }">
+            <el-icon>
+              <component :is="router.meta.icon" />
+            </el-icon>
+            {{ router.meta.title }}
+          </el-breadcrumb-item>
+        </template>
       </el-breadcrumb>
     </div>
     <div class="right">
@@ -55,7 +58,7 @@ const user = ref({ nickname: 'Y小了个p' });
   }
 
   .left {
-    .el-icon {
+    .icon-collapse {
       margin-right: 12px;
       cursor: pointer;
     }

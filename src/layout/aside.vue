@@ -5,7 +5,7 @@
       <span v-show="!settingStore.isCollapseAside">{{ config.title }}</span>
     </div>
     <el-scrollbar>
-      <el-menu router :default-active="activeMenu" :collapse="settingStore.isCollapseAside" background-color="#000"
+      <el-menu router :default-active="$route.path" :collapse="settingStore.isCollapseAside" background-color="#000"
         text-color="#fff">
         <MenuList :menu="menuList"></MenuList>
       </el-menu>
@@ -18,12 +18,9 @@ import config from '../config'
 import MenuList from './menuList.vue'
 import { reactive } from 'vue'
 import { constantRoutes } from '../router/routes'
-import { useRoute } from 'vue-router'
 import { useSettingStore } from '@/stores/modules/setting'
 
 const settingStore = useSettingStore();
-const router = useRoute()
-const activeMenu = router.path
 const menuList = reactive(constantRoutes);
 </script>
 
