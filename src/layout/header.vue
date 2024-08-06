@@ -18,7 +18,7 @@
     </div>
     <div class="right">
       <el-button icon="Refresh" circle @click="settingStore.toggleRefresh" />
-      <el-button icon="FullScreen" circle />
+      <el-button icon="FullScreen" circle @click="toggleFullScreen" />
       <el-button icon="Setting" circle />
       <img class="avatar" src="../assets/logo.png" alt="avatar">
       <el-dropdown>
@@ -42,6 +42,14 @@
 import { ref } from 'vue'
 import { useSettingStore } from '@/stores/modules/setting'
 const settingStore = useSettingStore();
+
+const toggleFullScreen = () => {
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  } else {
+    document.documentElement.requestFullscreen();
+  }
+}
 
 const user = ref({ nickname: 'Y小了个p' });
 </script>
