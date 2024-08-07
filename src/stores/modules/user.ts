@@ -14,5 +14,11 @@ export const useUserStore = defineStore('user', () => {
     userInfo.value = _userInfo
   }
 
-  return { token, setToken, userInfo, setUserInfo }
+  const clearUserInfo = () => {
+    token.value = ''
+    localStorage.removeItem('TOKEN')
+    userInfo.value = {} as UserInfoType
+  }
+
+  return { token, setToken, userInfo, setUserInfo, clearUserInfo }
 })

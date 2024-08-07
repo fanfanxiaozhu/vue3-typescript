@@ -30,7 +30,7 @@
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>退出登录</el-dropdown-item>
+            <el-dropdown-item @click="logout">退出登录</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -43,6 +43,8 @@ import { useSettingStore } from '@/stores/modules/setting'
 const settingStore = useSettingStore();
 import { useUserStore } from '@/stores/modules/user'
 const userStore = useUserStore()
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 const toggleFullScreen = () => {
   if (document.fullscreenElement) {
@@ -50,6 +52,11 @@ const toggleFullScreen = () => {
   } else {
     document.documentElement.requestFullscreen();
   }
+}
+
+const logout = () => {
+  userStore.clearUserInfo()
+  router.push({ path: '/login' })
 }
 </script>
 
