@@ -9,6 +9,8 @@ import 'virtual:svg-icons-register'
 
 import App from './App.vue'
 
+import '@/router/permission.ts'
+
 import '@/styles/index.scss'
 
 // console.log(import.meta.env)
