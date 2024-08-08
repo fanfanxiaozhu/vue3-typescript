@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 import type { UserInfoType } from '@/api/user/type'
+import { reqUserInfo } from '@/api/user'
 
 export const useUserStore = defineStore('user', () => {
   const token = ref(localStorage.getItem('TOKEN'))
@@ -10,6 +11,15 @@ export const useUserStore = defineStore('user', () => {
   }
 
   const userInfo = ref<UserInfoType>({} as UserInfoType)
+  const getUserInfo = async () => {
+    const res = await reqUserInfo()
+    if (res.code === 200) {
+      setUserInfo(res.data.checkUser)
+      return 'ok'
+    } else {
+      return Promise.reject('error')
+    }
+  }
   const setUserInfo = (_userInfo: UserInfoType) => {
     userInfo.value = _userInfo
   }
@@ -20,5 +30,5 @@ export const useUserStore = defineStore('user', () => {
     userInfo.value = {} as UserInfoType
   }
 
-  return { token, setToken, userInfo, setUserInfo, clearUserInfo }
+  return { token, setToken, userInfo, getUserInfo, setUserInfo, clearUserInfo }
 })
